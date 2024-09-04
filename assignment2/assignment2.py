@@ -1,7 +1,12 @@
+# MODIFICATIONS:
+# 1. Changed input length to 30, instead of 20
+# 2. Included 0 as a negative number
+# 3. Removed duplicates from the list
+
 def split_and_sort(nums):
 
     # check input list length 
-    if len(nums) > 30:
+    if len(nums) > 30: # Changed to 30
         print("Error: Input list should contain less number of integers.")
         return
 
