@@ -1,0 +1,76 @@
+## TEST CASE FOR MR1 ##
+Test Cases for MR1: Permutation of Input Order
+ID	Original Input	Permuted Input	Purpose
+TC1	[3, 1, 4, 2]	[2, 4, 1, 3]	Basic permutation
+TC2	[5, 3, 2, 1]	[1, 2, 3, 5]	Sorted to reverse
+TC3	[9, 6, 8, 7]	[8, 7, 6, 9]	Random permutation
+TC4	[1]	[1]	Single element
+TC5	[]	[]	Empty list
+TC6	[3, 3, 2, 2]	[2, 3, 3, 2]	List with duplicates
+TC7	[1, 2, 3]	[3, 2, 1]	Full reversal
+TC8	[10, -1, 0, 5]	[0, 10, 5, -1]	Mixed integers
+TC9	[4.1, 2.2, 3.3]	[3.3, 4.1, 2.2]	Floating points
+TC10	[1, 2, 2, 1]	[2, 1, 1, 2]	Repeated elements in mixed order
+
+# CODE FOR TEST CASE 1 #
+scenarios = [
+        ([3, 1, 4, 2], [2, 4, 1, 3]),           # Basic permutation
+        ([5, 3, 2, 1], [1, 2, 3, 5]),           # Sorted to reverse
+        ([9, 6, 8, 7], [8, 7, 6, 9]),           # Random permutation
+        ([1], [1]),                             # Single element
+        ([], []),                               # Empty list
+        ([3, 3, 2, 2], [2, 3, 3, 2]),           # List with duplicates
+        ([1, 2, 3], [3, 2, 1]),                 # Full reversal
+        ([10, -1, 0, 5], [0, 10, 5, -1]),       # Mixed integers
+        ([4.1, 2.2, 3.3], [3.3, 4.1, 2.2]),     # Floating points
+        ([1, 2, 2, 1], [2, 1, 1, 2])            # Repeated elements in mixed order
+    ]
+
+
+## TEST CASE FOR MR2 ##
+ID	Original Input	Input with Duplicates	Purpose
+TC1	[2, 3, 1]	[2, 3, 1, 2, 3]	Basic duplicates
+TC2	[5, 5, 5]	[5, 5, 5, 5, 5, 5]	All duplicates
+TC3	[1, 2, 3]	[1, 2, 3, 1, 2, 3]	Duplicates among sorted
+TC4	[0]	[0, 0]	Single element
+TC5	[]	[]	Empty case
+TC6	[4, 1, 4]	[1, 4, 4, 4, 1]	Multiple duplicates in random order
+TC7	[1, 2, 2]	[2, 1, 2, 2]	Duplicate at different positions
+TC8	[7, 7, 3, 3]	[3, 3, 7, 7, 7]	Two pairs of duplicates
+TC9	[1, 1, 1, 2]	[1, 1, 1, 2, 1]	Duplicate testing with order variation
+TC10	[5, 5, 5, 5, 5]	[5, 5, 5, 5, 5, 5]	Testing stability with heavy duplicates
+
+# CODE FOR TEST CASE 2 #
+scenarios = [
+    ([2, 3, 1], [2, 3, 1, 2, 3]),          # Basic duplicates
+    ([5, 5, 5], [5, 5, 5, 5, 5, 5]),       # All duplicates
+    ([1, 2, 3], [1, 2, 3, 1, 2, 3]),       # Duplicates among sorted
+    ([0], [0, 0]),                         # Single element
+    ([], []),                              # Empty case
+    ([4, 1, 4], [1, 4, 4, 4, 1]),          # Multiple duplicates in random order
+    ([1, 2, 2], [2, 1, 2, 2]),             # Duplicate at different positions
+    ([7, 7, 3, 3], [3, 3, 7, 7, 7]),       # Two pairs of duplicates
+    ([1, 1, 1, 2], [1, 1, 1, 2, 1]),       # Duplicate testing with order variation
+    ([5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5])  # Testing stability with heavy duplicates
+]
+
+## TEST CASE FOR MR3 ##
+ID	Original Input	Expected Output	Purpose
+TC1	[(1, 'apple'), (2, 'banana'), (1, 'cherry')]	[(1, 'apple'), (1, 'cherry'), (2, 'banana')]	Same keys with different items (stability check)
+TC2	[(1, 'x'), (1, 'y'), (2, 'a')]	[(1, 'x'), (1, 'y'), (2, 'a')]	Simple stability with letters
+TC3	[(4, 'pear'), (2, 'banana'), (2, 'banana')]	[(2, 'banana'), (2, 'banana'), (4, 'pear')]	Two items with the same key and checking order stability
+TC4	[(3, 'grape'), (2, 'mango'), (3, 'kiwi'), (4, 'orange')]	[(2, 'mango'), (3, 'grape'), (3, 'kiwi'), (4, 'orange')]	More complex case with repeated keys
+TC5	[(6, 'peach'), (6, 'plum'), (5, 'apple')]	[(5, 'apple'), (6, 'peach'), (6, 'plum')]	Checking stability with numbers and letters
+TC6	[(5, 'a'), (3, 'b'), (5, 'c')]	[(3, 'b'), (5, 'a'), (5, 'c')]	Multiple entries with the same key
+TC7	[(4, 'blue'), (4, 'red'), (2, 'green'), (2, 'yellow')]	[(2, 'green'), (2, 'yellow'), (4, 'blue'), (4, 'red')]	Mixed stability with repeated items and numbers
+
+# CODE FOR TEST CASE 3 #
+scenarios = [
+    ([(1, 'apple'), (2, 'banana'), (1, 'cherry')], [(1, 'apple'), (1, 'cherry'), (2, 'banana')]),                           # Same keys with different items (stability check)
+    ([(1, 'x'), (1, 'y'), (2, 'a')], [(1, 'x'), (1, 'y'), (2, 'a')]),                                                       # Simple stability with letters
+    ([(4, 'pear'), (2, 'banana'), (2, 'banana')], [(2, 'banana'), (2, 'banana'), (4, 'pear')]),                             # Two items with the same key and checking order stability
+    ([(3, 'grape'), (2, 'mango'), (3, 'kiwi'), (4, 'orange')], [(2, 'mango'), (3, 'grape'), (3, 'kiwi'), (4, 'orange')]),   # More complex case with repeated keys
+    ([(6, 'peach'), (6, 'plum'), (5, 'apple')], [(5, 'apple'), (6, 'peach'), (6, 'plum')]),                                 # Checking stability with numbers and letters
+    ([(5, 'a'), (3, 'b'), (5, 'c')], [(3, 'b'), (5, 'a'), (5, 'c')]),                                                       # Multiple entries with the same key
+    ([(4, 'blue'), (4, 'red'), (2, 'green'), (2, 'yellow')], [(2, 'green'), (2, 'yellow'), (4, 'blue'), (4, 'red')])        # Mixed stability with repeated items and numbers
+]

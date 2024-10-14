@@ -1,0 +1,5 @@
+## LIST OF METAMORPHIC RELATION ##
+ID	    Metamorphic Relation Description
+MR1	    Permutation of input order: The sorted result should remain the same when the input order is changed.
+MR2	    Addition of duplicate elements: Adding duplicates to the input should not affect the sorted result.
+MR3	    Sorting stability: For items with the same key, their relative order should remain unchanged after sorting.

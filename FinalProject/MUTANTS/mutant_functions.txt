@@ -1,0 +1,148 @@
+## LIST OF MUTANT FUNCTIONS ##
+ID	Mutant Function	Purpose
+M1	merge_sort_mutation_1	Reverses the order of merging by changing < to >.
+M2	merge_sort_mutation_2	Only appends equal elements, skipping others.
+M3	merge_sort_mutation_3	Changes the split index to one-third of the array.
+M4	merge_sort_mutation_4	Calls the right half before the left half in recursion.
+M5	merge_sort_mutation_5	Changes base case condition to handle arrays < 4.
+M6	merge_sort_mutation_6	Skips recursive call for the left half entirely.
+M7	merge_sort_mutation_7	Incorrectly appends right[j] instead of merging properly.
+M8	merge_sort_mutation_8	Always appends left[i], ignoring right[j].
+M9	merge_sort_mutation_9	Changes base case to handle arrays > 2 incorrectly.
+M10	merge_sort_mutation_10	Skips appending left[i] altogether, only appending right[j].
+
+## MUTANT FUNCTION CODE ##
+def merge_sort_mutation_1(arr):
+    def merge(left, right):
+        merged = []
+        i = j = 0
+        while i < len(left) and j < len(right):
+            if left[i] > right[j]:  # Mutated: changed < to > to reverse the order
+                merged.append(left[i])
+                i += 1
+            else:
+                merged.append(right[j])
+                j += 1
+        while i < len(left):
+            merged.append(left[i])
+            i += 1
+        while j < len(right):
+            merged.append(right[j])
+            j += 1
+        return merged
+    return merge_sort(arr)
+
+def merge_sort_mutation_2(arr):
+    def merge(left, right):
+        merged = []
+        i = j = 0
+        while i < len(left) and j < len(right):
+            if left[i] == right[j]:  # Mutated: only append equal elements
+                merged.append(left[i])
+                i += 1
+                j += 1
+            else:
+                if left[i] < right[j]:  # Default comparison is preserved, but logic is flawed
+                    merged.append(left[i])
+                    i += 1
+                else:
+                    merged.append(right[j])
+                    j += 1
+        while i < len(left):
+            merged.append(left[i])
+            i += 1
+        while j < len(right):
+            merged.append(right[j])
+            j += 1
+        return merged
+    return merge_sort(arr)
+
+def merge_sort_mutation_3(arr):
+    mid = len(arr) // 3  # Mutated: changed split index to one-third
+    left_half = merge_sort(arr[:mid])
+    right_half = merge_sort(arr[mid:])  # This may lead to incorrect merging
+    return merge(left_half, right_half)
+
+def merge_sort_mutation_4(arr):
+    def merge_sort_recursive(arr):
+        if len(arr) <= 1:  # Mutated: changed base case to <= 1
+            return arr
+        mid = len(arr) // 2
+        left_half = merge_sort(arr[mid:])  # Call right half first
+        right_half = merge_sort(arr[:mid])  # Then call left half
+        return merge(left_half, right_half)
+    return merge_sort_recursive(arr)
+
+def merge_sort_mutation_5(arr):
+    if len(arr) < 4:  # Mutated: changed base case condition to < 4
+        return arr  # May cause incorrect behavior for small arrays
+    mid = len(arr) // 2
+    left_half = merge_sort(arr[:mid])
+    right_half = merge_sort(arr[mid:])
+    return merge(left_half, right_half)
+
+def merge_sort_mutation_6(arr):
+    mid = len(arr) // 2
+    # Mutated: skip the recursive call for the left half
+    left_half = arr[:mid]  # No recursive call on left half
+    right_half = merge_sort(arr[mid:])
+    return merge(left_half, right_half)
+
+def merge_sort_mutation_7(arr):
+    def merge(left, right):
+        merged = []
+        i = j = 0
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                merged.append(left[i])
+                i += 1
+            else:
+                merged.append(left[j])  # Mutated: incorrectly append right[j]
+                j += 1
+        while i < len(left):  # This loop is preserved
+            merged.append(left[i])
+            i += 1
+        while j < len(right):
+            merged.append(right[j])
+            j += 1
+        return merged
+    return merge_sort(arr)
+
+def merge_sort_mutation_8(arr):
+    def merge(left, right):
+        merged = []
+        i = j = 0
+        while i < len(left) and j < len(right):
+            merged.append(left[i])  # Mutated: incorrectly append left[i] every time
+            i += 1  # No condition for j
+        while i < len(left):
+            merged.append(left[i])
+            i += 1
+        while j < len(right):
+            merged.append(right[j])
+            j += 1
+        return merged
+    return merge_sort(arr)
+
+def merge_sort_mutation_9(arr):
+    def merge_sort_recursive(arr):
+        if len(arr) > 2:  # Mutated: changed base case to > 2
+            return arr
+        mid = len(arr) // 2
+        left_half = merge_sort(arr[:mid])
+        right_half = merge_sort(arr[mid:])
+        return merge(left_half, right_half)
+    return merge_sort_recursive(arr)
+
+def merge_sort_mutation_10(arr):
+    def merge(left, right):
+        merged = []
+        i = j = 0
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                i += 1  # Mutated: skip appending left[i] altogether
+            else:
+                merged.append(right[j])  # Always append right[j]
+                j += 1
+        return merged  # Missing remaining elements
+    return merge(arr, [])

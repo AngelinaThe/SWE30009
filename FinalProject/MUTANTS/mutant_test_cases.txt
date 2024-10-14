@@ -1,0 +1,26 @@
+## LIST OF MUTANT TEST CASES ##
+Test Case ID	Test Case	Purpose
+TC1	[3, 1, 4, 1, 5]	Random order
+TC2	[10, -1, 2, 5, 0]	Mixed positive and negative
+TC3	[5, 9, 2, 8, 7]	Random order
+TC4	[4, 2, 3, 2, 4, 3]	Non-unique elements
+TC5	[1]	Single element
+TC6	[5, 4, 3, 2, 1]	Reverse sorted
+TC7	[1, 2, 3, 4, 5]	Already sorted
+TC8	[2, 2, 2, 2, 2]	All identical elements
+TC9	[1, 3, 2, 3, 1]	Non-unique elements
+TC10	[0, 0, -1, -1, 1]	Zeros and negatives
+
+## TEST CASE DEFINED CODE ##
+test_cases = [
+    ([3, 1, 4, 1, 5], [1, 1, 3, 4, 5]),         # TC1 - Random order
+    ([10, -1, 2, 5, 0], [-1, 0, 2, 5, 10]),      # TC2 - Mixed positive and negative
+    ([5, 9, 2, 8, 7], [2, 5, 7, 8, 9]),          # TC3 - Random order
+    ([4, 2, 3, 2, 4, 3], [2, 2, 3, 3, 4, 4]),    # TC4 - Non-unique elements
+    ([1], [1]),                                   # TC5 - Single element
+    ([5, 4, 3, 2, 1], [1, 2, 3, 4, 5]),           # TC6 - Reverse sorted
+    ([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]),           # TC7 - Already sorted
+    ([2, 2, 2, 2, 2], [2, 2, 2, 2, 2]),           # TC8 - All identical elements
+    ([1, 3, 2, 3, 1], [1, 1, 2, 3, 3]),           # TC9 - Non-unique elements
+    ([0, 0, -1, -1, 1], [-1, -1, 0, 0, 1]),       # TC10 - Zeros and negatives
+]
